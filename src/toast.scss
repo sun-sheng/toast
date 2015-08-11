@@ -1,0 +1,214 @@
+@import "compass/css3/transform";
+@import "compass/css3/transition";
+
+.toast {
+
+    display: none;
+    pointer-events: none;
+    z-index: 9999;
+    position: fixed;
+    left: 15px;
+    right: 15px;
+    padding: 3px 0;
+    text-align: center;
+
+    .toast-content
+    {
+        opacity: 0;
+        @include transition-property(opacity, transform);
+        @include transition-duration(400ms);
+        display: inline-block;
+        position: relative;
+        text-align: left;
+        background: rgba(0, 0, 0, 0.6);
+        box-shadow: 0 0 3px rgba(0, 0, 0, 0.3);
+        color: #fff;
+        padding: 10px;
+        padding-left: 46px;
+        min-height: 30px;
+        width: 16em;
+        border-radius: 5px;
+        .toast-icon
+        {
+            display: block;
+            position: absolute;
+            width: 30px;
+            height: 30px;
+            top: 0;
+            bottom: 0;
+            left: 8px;
+            margin: auto;
+            color: inherit;
+            svg
+            {
+                width: 100%;
+                height: 100%;
+                fill: currentColor;
+            }
+        }
+        .toast-title,
+        .toast-text
+        {
+            -ms-word-wrap: break-word;
+            word-wrap: break-word;
+        }
+        .toast-title
+        {
+            font-size: 16px;
+            line-height: 24px;
+        }
+        .toast-text
+        {
+            font-size: 14px;
+            line-height: 18px;
+        }
+    }
+
+    &.toast-no-icon
+    {
+        .toast-content
+        {
+            padding-left: 10px;
+            .toast-icon
+            {
+                display: none;
+            }
+        }
+    }
+
+    &.toast-mobile
+    {
+        .toast-content
+        {
+            padding: 8px;
+            padding-left: 36px;
+            min-height: 20px;
+            width: initial;
+            border-radius: 3px;
+            .toast-icon
+            {
+                width: 20px;
+                height: 20px;
+            }
+            .toast-title
+            {
+                font-size: 14px;
+                line-height: 20px;
+            }
+            .toast-text
+            {
+                font-size: 12px;
+                line-height: 16px;
+            }
+        }
+        &.toast-no-icon
+        {
+            .toast-content
+            {
+                padding-left: 8px;
+                .toast-icon
+                {
+                    display: none;
+                }
+            }
+        }
+    }
+
+    &.toast-y-top .toast-content
+    {
+        @include transform(translate3d(0, -100%, 0));
+    }
+    &.toast-y-center .toast-content
+    {
+        @include transform(translate3d(0,100%,0));
+    }
+    &.toast-y-bottom .toast-content
+    {
+        @include transform(translate3d(0,100%,0));
+    }
+
+    &.toast-x-left .toast-content
+    {
+        @include transform(translate3d(-100%, 0, 0));
+    }
+    &.toast-x-right .toast-content
+    {
+        @include transform(translate3d(100%, 0, 0));
+    }
+
+    &.toast-in .toast-content
+    {
+        opacity: 0.9;
+        @include transform(translate3d(0,0,0));
+    }
+    &.toast-out .toast-content
+    {
+        opacity: 0;
+        @include transform(translate3d(0,0,0) scale(0.815));
+    }
+
+    &.toast-y-top
+    {
+        top: 30px;
+        bottom: auto;
+    }
+    &.toast-y-center
+    {
+        top: 50%;
+        bottom: auto;
+    }
+    &.toast-y-bottom
+    {
+        top: auto;
+        bottom: 30px;
+    }
+    &.toast-x-left
+    {
+        text-align: left;
+    }
+    &.toast-x-center
+    {
+        text-align: center;
+    }
+    &.toast-x-right
+    {
+        text-align: right;
+    }
+
+    &.toast-type-success
+    {
+        .toast-content
+        {
+            background-color: #51a351;
+        }
+    }
+    &.toast-type-info
+    {
+        .toast-content
+        {
+            background-color: #2f96b4;
+        }
+    }
+    &.toast-type-warn
+    {
+        .toast-content
+        {
+            background-color: #f89406;
+        }
+    }
+    &.toast-type-error
+    {
+        .toast-content
+        {
+            background-color: #bd362f;
+        }
+    }
+    &.toast-type-default
+    {
+        .toast-content
+        {
+            background-color: #030303;
+        }
+    }
+
+}

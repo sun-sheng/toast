@@ -1,0 +1,19 @@
+body {padding: 0;margin: 0;font-size: 14px;font-family: Verdana, "WenQuanYi Micro Hei", "Microsoft YaHei", sans-serif;}
+input {padding: 0;margin: 0;}
+label {margin-bottom: 5px;}
+*:focus {outline: none}
+button {border: none; padding: 0.5em 0.75em; color: #fff; background-color: #eee}
+button.btn-block {display: block; box-sizing: border-box;}
+button.btn-primary {background-color: #3190e8;}
+button.btn-success {background-color: #5cdd72;}
+textarea {resize: none}
+.form-group {display: block}
+.form-group .form-control {display: block; box-sizing: border-box; width: 100%; padding: 0.75em; border: 1px solid #ddd;}
+.form-group .form-control:focus {border-color: #3190e8;}
+.form-group .form-control.ng-invalid {border-color: #ff3b30;}
+.grid {padding: 0 15px;}
+.grid-row {margin: 0 -15px;}
+.grid-row:before, .grid-row:after {display: table; clear: both;}
+.grid-col-6 {width: 50%; box-sizing: border-box; padding: 0 15px; min-height: 1px;float: left;}
+.mobile-page .navbar {display: block; text-align: center; font-size: 16px; line-height: 40px; font-weight: bold; background-color: #fff; border: 1px solid #ddd;}
+.mobile-page body {background-color: #f5f6f7}

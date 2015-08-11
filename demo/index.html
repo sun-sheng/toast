@@ -1,0 +1,106 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>toast demo</title>
+    <link rel="stylesheet" href="../src/toast.css"/>
+    <link href="http://cdn.bootcss.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        #container {width: 800px; margin: 30px auto;}
+        .form-box { float: left; width: 320px;}
+        .frame-box
+        {
+            float: right;
+            padding: 117px 37px 120px 37px;
+            background-image: url("device-sprite.png");
+            background-position: -396px 0;
+        }
+        iframe
+        {
+            width: 320px;
+            height: 570px;
+            border: none;
+        }
+        textarea {resize: none;}
+    </style>
+</head>
+
+<body ng-app="app">
+<div id="container" class="clearfix">
+    <div class="form-box">
+        <h2>Toast Demo</h2>
+        <form name="form" novalidate>
+            <div class="form-group">
+                <label>Title</label>
+                <input type="text" name="title" required class="form-control" ng-model="toastOptions.title"/>
+            </div>
+            <div class="form-group">
+                <label>Text</label>
+                <textarea class="form-control" ng-model="toastOptions.text"></textarea>
+            </div>
+            <div class="form-group">
+                <label>Type</label>
+                <select class="form-control" ng-model="toastOptions.type" ng-options="item for item in toastOptionTypes"></select>
+            </div>
+            <label>Position</label>
+            <div class="form-inline">
+                <div class="form-group">
+                    <select class="form-control" ng-model="toastPosition.y" ng-options="item for item in toastYPositions" required></select>
+                </div>
+                <div class="form-group">
+                    <select class="form-control" ng-model="toastPosition.x" ng-options="item for item in toastXPositions" required></select>
+                </div>
+            </div>
+            <div class="form-group">
+                <label>Duration</label>
+                <input class="form-control" type="number" ng-model="toastOptions.duration"/>
+            </div>
+            <div class="row">
+                <div class="col-xs-6">
+                    <button class="btn btn-block btn-info" ng-click="showToast()" ng-disabled="form.$invalid">Show Toast</button>
+                </div>
+                <div class="col-xs-6">
+                    <button class="btn btn-block btn-danger" ng-click="reset()" >Reset</button>
+                </div>
+            </div>
+        </form>
+    </div>
+    <div class="frame-box">
+        <iframe src="mobile.html"></iframe>
+    </div>
+</div>
+
+<script src="../src/toast.js"></script>
+<script src="http://cdn.bootcss.com/angular.js/1.4.3/angular.min.js"></script>
+<script >
+    angular.module('app', []).run(function ($rootScope) {
+        var defaultToastOptions = {
+            title: '一个测试',
+            text: '这是一个 toast 测试',
+            type: 'success',
+            duration: 5000
+        };
+        $rootScope.toastYPositions = ['top', 'center', 'bottom'];
+        $rootScope.toastXPositions = ['left', 'center', 'right'];
+        $rootScope.toastPosition = {
+            x: 'left',
+            y: 'top'
+        };
+
+        $rootScope.toastOptions = angular.copy(defaultToastOptions);
+        $rootScope.toastOptionTypes = ['success', 'error', 'warn', 'info'];
+        $rootScope.toastOptionPositions = ['top', 'center', 'bottom'];
+        $rootScope.showToast = function ()
+        {
+            $rootScope.toastOptions.position = $rootScope.toastPosition.y + ' ' + $rootScope.toastPosition.x;
+            $toast.show($rootScope.toastOptions);
+        };
+        $rootScope.reset = function ()
+        {
+            $rootScope.toastOptions = angular.copy(defaultToastOptions);
+            $rootScope.toastPosition = {};
+        };
+    });
+</script>
+</body>
+</html>
