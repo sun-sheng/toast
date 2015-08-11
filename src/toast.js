@@ -44,7 +44,7 @@
     }
     function isArray (value)
     {
-        return Array.isArray(value);
+        return Array.isArray(value) || (isObject(value) && isNumber(value.length) && value.length > -1);
     }
     function isFunction (value)
     {
@@ -66,13 +66,22 @@
     var $util = {
         /**
          * 遍历
-         * @param obj {object | array}
+         * @param obj {object | Array}
          * @param func
          */
         each: function (obj, func)
         {
             var item;
-            if (isObject(obj))
+            if (isArray(obj))
+            {
+                var i = 0;
+                var l = obj.length;
+                for (i; i < l; i ++)
+                {
+                    item = obj[i];
+                    if (isDefined(item)) func(item, i);
+                }
+            } else if (isObject(obj))
             {
                 var key;
                 for (key in obj)
@@ -84,35 +93,24 @@
                     }
                 }
             }
-            else if (isArray(obj))
-            {
-                var i = 0;
-                var l = obj.length;
-                for (i; i < l; i ++)
-                {
-                    item = obj[i];
-                    if (isDefined(item)) func(item, i);
-                }
-            }
         },
 
         some: function (obj, func)
         {
-            if (isObject(obj))
-            {
-                var key;
-                for (key in obj)
-                {
-                    if (obj.hasOwnProperty(key) && func(obj[key], key)) return true;
-                }
-            }
-            else if (isArray(obj))
+            if (isArray(obj))
             {
                 var i = 0;
                 var l = obj.length;
                 for (i; i < l; i ++)
                 {
                     if (isDefined(obj[i]) && func(obj[i], i)) return true;
+                }
+            } else if (isObject(obj))
+            {
+                var key;
+                for (key in obj)
+                {
+                    if (obj.hasOwnProperty(key) && func(obj[key], key)) return true;
                 }
             }
             return false;
