@@ -46,7 +46,8 @@ gulp.task('minify-css', ['compass'], function ()
 
 gulp.task('dev', function ()
 {
-    gulp.watch('./src/**/*.scss', ['compass']);
+    gulp.watch('./src/toast.js', ['uglify']);
+    gulp.watch('./src/toast.scss', ['minify-css']);
 });
 
 gulp.task('dist', ['uglify', 'minify-css']);

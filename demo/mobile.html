@@ -5,7 +5,7 @@
     <title>toast demo</title>
     <meta name="viewport"
           content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no">
-    <link rel="stylesheet" href="../src/toast.css"/>
+    <link rel="stylesheet" href="../dist/toast.min.css"/>
     <link href="http://cdn.bootcss.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet">
     <style>
         body {background-color: #f5f6f7}
@@ -14,7 +14,7 @@
     </style>
 </head>
 <body ng-app="mobile">
-<div class="mobile-navbar">Mobile Demo</div>
+<div class="mobile-navbar">Toast Mobile Demo</div>
 <form name="form" class="container" novalidate style="padding: 15px;">
     <div class="form-group">
         <label>Title</label>
@@ -33,6 +33,10 @@
         <select class="form-control" ng-model="toastOptions.position" ng-options="item for item in toastOptionPositions"></select>
     </div>
     <div class="form-group">
+        <label>Cls</label>
+        <input class="form-control" type="text" ng-model="toastOptions.cls"/>
+    </div>
+    <div class="form-group">
         <label>Duration</label>
         <input class="form-control" type="number" ng-model="toastOptions.duration"/>
     </div>
@@ -46,7 +50,7 @@
     </div>
 </form>
 
-<script src="../src/toast.js"></script>
+<script src="../dist/toast.min.js"></script>
 <script src="http://cdn.bootcss.com/angular.js/1.4.3/angular.min.js"></script>
 <script >
     angular.module('mobile', []).run(function ($rootScope) {
