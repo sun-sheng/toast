@@ -14,7 +14,7 @@
     </style>
 </head>
 <body ng-app="mobile">
-<div class="mobile-navbar">Mobile Demo</div>
+<div class="mobile-navbar">Toast Mobile Demo</div>
 <form name="form" class="container" novalidate style="padding: 15px;">
     <div class="form-group">
         <label>Title</label>
@@ -31,6 +31,10 @@
     <div class="form-group">
         <label>Position</label>
         <select class="form-control" ng-model="toastOptions.position" ng-options="item for item in toastOptionPositions"></select>
+    </div>
+    <div class="form-group">
+        <label>Cls</label>
+        <input class="form-control" type="text" ng-model="toastOptions.cls"/>
     </div>
     <div class="form-group">
         <label>Duration</label>
