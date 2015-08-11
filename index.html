@@ -5,13 +5,16 @@
     <meta http-equiv="X-UA-Compatible" content="chrome=1">
     <meta name="viewport" content="width=640">
 
-    <link rel="stylesheet" href="stylesheets/core.css" media="screen">
+    <link rel="stylesheet" href="stylesheets/screen.css" media="screen">
+    <link rel="stylesheet" href="stylesheets/non-screen.css" media="handheld, only screen and (max-device-width:640px)">
     <link rel="stylesheet" href="stylesheets/mobile.css" media="handheld, only screen and (max-device-width:640px)">
     <link rel="stylesheet" href="stylesheets/github-light.css">
 
     <script type="text/javascript" src="javascripts/modernizr.js"></script>
     <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
-    <script type="text/javascript" src="javascripts/headsmart.min.js"></script>
+    <script type="text/javascript">
+      ;(function(a){a.fn.headsmart=function(){var c=a(this);d();function d(){var e=[],g="";if(b("h1")){e.push("h1")}if(b("h2")){e.push("h2")}if(b("h3")){e.push("h3")}if(b("h4")){e.push("h4")}if(b("h5")){e.push("h5")}if(b("h6")){e.push("h6")}for(var f=0;f<e.length;f++){c.children(e[f]).addClass("header-level-"+(f+1))}}function b(f){return(c.children(f).length>0)?true:false}}})(jQuery);
+    </script>
     <script type="text/javascript">
       $(document).ready(function () {
         $('#main_content').headsmart()
