@@ -1,0 +1,172 @@
+.toast {
+  display: none;
+  pointer-events: none;
+  z-index: 9999;
+  position: fixed;
+  left: 15px;
+  right: 15px;
+  padding: 3px 0;
+  text-align: center;
+}
+.toast .toast-content {
+  opacity: 0;
+  -moz-transition-property: opacity, -moz-transform;
+  -o-transition-property: opacity, -o-transform;
+  -webkit-transition-property: opacity, -webkit-transform;
+  transition-property: opacity, transform;
+  -moz-transition-duration: 400ms;
+  -o-transition-duration: 400ms;
+  -webkit-transition-duration: 400ms;
+  transition-duration: 400ms;
+  display: inline-block;
+  position: relative;
+  text-align: left;
+  background: rgba(0, 0, 0, 0.6);
+  box-shadow: 0 0 3px rgba(0, 0, 0, 0.3);
+  color: #fff;
+  padding: 10px;
+  padding-left: 46px;
+  min-height: 30px;
+  width: 16em;
+  border-radius: 5px;
+}
+.toast .toast-content .toast-icon {
+  display: block;
+  position: absolute;
+  width: 30px;
+  height: 30px;
+  top: 0;
+  bottom: 0;
+  left: 8px;
+  margin: auto;
+  color: inherit;
+}
+.toast .toast-content .toast-icon svg {
+  width: 100%;
+  height: 100%;
+  fill: currentColor;
+}
+.toast .toast-content .toast-title,
+.toast .toast-content .toast-text {
+  -ms-word-wrap: break-word;
+  word-wrap: break-word;
+}
+.toast .toast-content .toast-title {
+  font-size: 16px;
+  line-height: 24px;
+}
+.toast .toast-content .toast-text {
+  font-size: 14px;
+  line-height: 18px;
+}
+.toast.toast-no-icon .toast-content {
+  padding-left: 10px;
+}
+.toast.toast-no-icon .toast-content .toast-icon {
+  display: none;
+}
+.toast.toast-mobile .toast-content {
+  padding: 8px;
+  padding-left: 36px;
+  min-height: 20px;
+  width: initial;
+  border-radius: 3px;
+}
+.toast.toast-mobile .toast-content .toast-icon {
+  width: 20px;
+  height: 20px;
+}
+.toast.toast-mobile .toast-content .toast-title {
+  font-size: 14px;
+  line-height: 20px;
+}
+.toast.toast-mobile .toast-content .toast-text {
+  font-size: 12px;
+  line-height: 16px;
+}
+.toast.toast-mobile.toast-no-icon .toast-content {
+  padding-left: 8px;
+}
+.toast.toast-mobile.toast-no-icon .toast-content .toast-icon {
+  display: none;
+}
+.toast.toast-y-top .toast-content {
+  -moz-transform: translate3d(0, -100%, 0);
+  -ms-transform: translate3d(0, -100%, 0);
+  -webkit-transform: translate3d(0, -100%, 0);
+  transform: translate3d(0, -100%, 0);
+}
+.toast.toast-y-center .toast-content {
+  -moz-transform: translate3d(0, 100%, 0);
+  -ms-transform: translate3d(0, 100%, 0);
+  -webkit-transform: translate3d(0, 100%, 0);
+  transform: translate3d(0, 100%, 0);
+}
+.toast.toast-y-bottom .toast-content {
+  -moz-transform: translate3d(0, 100%, 0);
+  -ms-transform: translate3d(0, 100%, 0);
+  -webkit-transform: translate3d(0, 100%, 0);
+  transform: translate3d(0, 100%, 0);
+}
+.toast.toast-x-left .toast-content {
+  -moz-transform: translate3d(-100%, 0, 0);
+  -ms-transform: translate3d(-100%, 0, 0);
+  -webkit-transform: translate3d(-100%, 0, 0);
+  transform: translate3d(-100%, 0, 0);
+}
+.toast.toast-x-right .toast-content {
+  -moz-transform: translate3d(100%, 0, 0);
+  -ms-transform: translate3d(100%, 0, 0);
+  -webkit-transform: translate3d(100%, 0, 0);
+  transform: translate3d(100%, 0, 0);
+}
+.toast.toast-in .toast-content {
+  opacity: 0.9;
+  -moz-transform: translate3d(0, 0, 0);
+  -ms-transform: translate3d(0, 0, 0);
+  -webkit-transform: translate3d(0, 0, 0);
+  transform: translate3d(0, 0, 0);
+}
+.toast.toast-out .toast-content {
+  opacity: 0;
+  -moz-transform: translate3d(0, 0, 0) scale(0.815);
+  -ms-transform: translate3d(0, 0, 0) scale(0.815);
+  -webkit-transform: translate3d(0, 0, 0) scale(0.815);
+  transform: translate3d(0, 0, 0) scale(0.815);
+}
+.toast.toast-y-top {
+  top: 30px;
+  bottom: auto;
+}
+.toast.toast-y-center {
+  top: 50%;
+  bottom: auto;
+}
+.toast.toast-y-bottom {
+  top: auto;
+  bottom: 30px;
+}
+.toast.toast-x-left {
+  text-align: left;
+}
+.toast.toast-x-center {
+  text-align: center;
+}
+.toast.toast-x-right {
+  text-align: right;
+}
+.toast.toast-type-success .toast-content {
+  background-color: #51a351;
+}
+.toast.toast-type-info .toast-content {
+  background-color: #2f96b4;
+}
+.toast.toast-type-warn .toast-content {
+  background-color: #f89406;
+}
+.toast.toast-type-error .toast-content {
+  background-color: #bd362f;
+}
+.toast.toast-type-default .toast-content {
+  background-color: #030303;
+}
