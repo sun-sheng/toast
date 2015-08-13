@@ -17,14 +17,14 @@ gulp.task('concat-js', function ()
     ]).pipe(
         concat('toast.js')
     ).pipe(
-        gulp.dest('src/')
+        gulp.dest('dist/')
     )
 });
 
 gulp.task('uglify', ['concat-js'], function ()
 {
     return gulp.src(
-        'src/toast.js'
+        'dist/toast.js'
     ).pipe(
         uglify()
     ).pipe(
@@ -41,7 +41,7 @@ gulp.task('compass', function ()
     ).pipe(
         compass({
             project: path.join(__dirname),
-            css: 'src',
+            css: 'dist',
             sass: 'src'
         })
     );
@@ -50,7 +50,7 @@ gulp.task('compass', function ()
 gulp.task('minify-css', ['compass'], function ()
 {
     return gulp.src(
-        './src/toast.css'
+        './dist/toast.css'
     ).pipe(
         minifyCSS()
     ).pipe(
@@ -63,7 +63,7 @@ gulp.task('minify-css', ['compass'], function ()
 
 gulp.task('watch', function ()
 {
-    gulp.watch(['./src/*.js', '!./src/toast.js'], ['uglify']);
+    gulp.watch(['./src/*.js'], ['uglify']);
     gulp.watch('./src/toast.scss', ['minify-css']);
 });
 
