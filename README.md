@@ -12,8 +12,8 @@ Reference these files in your index.html
 <script src="path/to/bower_components/toast/dist/toast.min.js"></script>    
 ```    
 ### API
-* show(options)
-<br/> options 会继承 defaultOptions
+#### show(options)
+options 会继承 defaultOptions
 <table>
     <thead>
     <tr>
@@ -54,9 +54,12 @@ Reference these files in your index.html
         <td>position</td>
         <td>string</td>
         <td>
-            toast 显示的位置 'x y'，移动端忽略 x
-            * x: left center right
-            * y: top center bottom
+            toast 显示的位置 'x y'
+            <ul>
+            <li>移动端忽略 x</li>
+            <li>x: left center right</li>
+            <li>y: top center bottom</li>
+            </ul>
         </td>
     </tr>
     <tr>
@@ -83,21 +86,21 @@ Reference these files in your index.html
     </tbody>
 </table>
 
-* hide(mix)
+#### hide(mix)
 <br/>mix 为 $toast.show() 的返回值
 
-* clear()
+#### clear()
 <br/>清除所有的 toast
 
-* success(title, [text|options, [text, options]]) 
+#### success(title, [text|options, [text, options]]) 
 <br/>$toast.show 的快捷调用，type 限定为 success
-* error(title, [text|options, [text, options]]) 
+#### error(title, [text|options, [text, options]]) 
 <br/>$toast.show 的快捷调用，type 限定为 error
-* warn(title, [text|options, [text, options]]) 
+#### warn(title, [text|options, [text, options]]) 
 <br/>$toast.show 的快捷调用，type 限定为 warn
-* info(title, [text|options, [text, options]]) 
+#### info(title, [text|options, [text, options]]) 
 <br/>$toast.show 的快捷调用，type 限定为 info
 
-* config(defaultOptions)
+#### config(defaultOptions)
 <br/> 设置默认的配置项，配置类容参考 $toast.show
 
