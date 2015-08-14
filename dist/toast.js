@@ -934,7 +934,7 @@ var Toast = {
 
     hide: function (mix)
     {
-        if (mix.$toast.hasClass('toast-out')) return true;
+        if (!mix || mix.$toast.hasClass('toast-out')) return true;
         clearTimeout(mix.timeout);
         var $toast = mix.$toast;
         $toast.addClass('toast-out');
@@ -944,6 +944,11 @@ var Toast = {
             $util.remove(toastMixes, mix);
             mix = null;
         });
+    },
+
+    clear: function ()
+    {
+        toastMixes.each(this.hide);
     },
 
     config: function (options)
