@@ -1,7 +1,7 @@
 #toast
 notification for web app
 ### Demo
-see the [demo](http://sun-sheng.github.io/toast/demo/index.html)
+http://sun-sheng.github.io/toast/demo/index.html
 ### INSTALL
     bower install https://github.com/sun-sheng/toast --save    
 ### USE
