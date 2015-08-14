@@ -7,8 +7,13 @@ var toastDefaultOptions = {
     duration: 5000,
     position: 'bottom',
     type: 'default',
+    //避免重复提示
+    distinct: false,
     mobile: isMobile,
-    icon: toastDefaultIcon
+    icon: toastDefaultIcon,
+    showCloseBtn: !isMobile,
+    //toast gap
+    gap: 5
 };
 
 var toastMixes = [];
@@ -82,9 +87,22 @@ function convertToastPosition (position)
     return position;
 }
 
+function distinctToast ($toast)
+{
+    var mixes = $util.findAll(toastMixes, function (item)
+    {
+        return item.$toast.html() === $toast.html();
+    });
+    $util.each(mixes, function (mix)
+    {
+        Toast.hide(mix);
+    });
+}
+
 function resizeToasts ($toast, position)
 {
     var toast_height = $toast.height();
+    var gap = toastDefaultOptions.gap;
     var $toasts;
     if (position.indexOf('toast-y-top') !== - 1)
     {
@@ -93,7 +111,7 @@ function resizeToasts ($toast, position)
         {
             if (index == ($toasts.length - 1)) return true;
             var $dom = $(dom);
-            $dom.css('top', $dom.offset().y + toast_height + 'px');
+            $dom.css('top', $dom.offset().y + toast_height + gap + 'px');
         });
     }
     else if (position.indexOf('toast-y-center') !== - 1)
@@ -108,7 +126,7 @@ function resizeToasts ($toast, position)
             }
             else
             {
-                $dom.css('top', $dom.offset().y + toast_height + 'px');
+                $dom.css('top', $dom.offset().y + toast_height + gap + 'px');
             }
         });
     }
@@ -119,12 +137,13 @@ function resizeToasts ($toast, position)
         {
             if (index == ($toasts.length - 1)) return true;
             var $dom = $(dom);
-            $dom.css('top', $dom.offset().y - toast_height + 'px');
+            var bottom = parseFloat($dom.css('bottom'));
+            $dom.css('bottom', bottom + toast_height + gap + 'px');
         });
     }
 }
 
-var $toast = {
+var Toast = {
 
     success: function (title, text, options)
     {
@@ -166,16 +185,24 @@ var $toast = {
         var title = options.title ? '<div class="toast-title">' + options.title + '</div>' : '';
         var text = options.text ? '<div class="toast-text">' + options.text + '</div>' : '';
         var icon = options.icon;
-        if (! icon)
+        if (icon)
         {
-            toastClasses.push('toast-no-icon');
-            icon = '';
+            toastClasses.push('toast-with-icon');
+            icon = '<div class="toast-icon">' + icon + '</div>';
         }
         else
         {
-            icon = '<div class="toast-icon">' + icon + '</div>';
+            icon = '';
         }
-        $toast.html('<div class="toast-content">' + icon + title + text + '</div>');
+        if (options.mobile || (options.mobile !== false && toastDefaultOptions.mobile)) toastClasses.push('toast-mobile');
+        var closeBtn = '';
+        if (!options.mobile && options.showCloseBtn)
+        {
+            toastClasses.push('toast-with-close');
+            closeBtn = '<div class="toast-close">x</div>'
+        }
+
+        $toast.html(icon + title + text + closeBtn);
         //toast class
         var type = 'toast-type-' + options.type;
         toastClasses.push(type);
@@ -185,25 +212,41 @@ var $toast = {
         {
             toastClasses.push(options.cls);
         }
-        if (options.mobile || (options.mobile !== false && toastDefaultOptions.mobile)) toastClasses.push('toast-mobile');
         $toast.addClass(toastClasses);
         //append to body
         $body.append($toast);
         $toast.show();
+        if ($toast.hasClass('toast-x-center'))
+        {
+            $toast.css('margin-left', '-' + $toast.width() / 2 + 'px');
+        }
+        //distinct others toasts
+        if (options.distinct) distinctToast($toast);
         //resize others toasts
         resizeToasts($toast, position);
-        //show transition
-        $toast.addClass('toast-in');
         var mix = {
             $toast: $toast
         };
         mix.timeout = setTimeout($util.bind(this.hide, null, mix), options.duration);
         toastMixes.push(mix);
+
+        $toast[0].onclick = function (e)
+        {
+            if (e.target.className.indexOf('toast-close') > -1) {
+                Toast.hide(mix);
+                return false;
+            }
+            //on click
+            if (isFunction(options.click)) options.click(e);
+        };
+        //show transition
+        $toast.addClass('toast-in');
         return mix;
     },
 
     hide: function (mix)
     {
+        if (mix.$toast.hasClass('toast-out')) return true;
         clearTimeout(mix.timeout);
         var $toast = mix.$toast;
         $toast.addClass('toast-out');

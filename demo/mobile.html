@@ -17,35 +17,35 @@
 <div class="mobile-navbar">Toast Mobile Demo</div>
 <form name="form" class="container" novalidate style="padding: 15px;">
     <div class="form-group">
-        <label>Title</label>
+        <label>title</label>
         <input type="text" name="title" required class="form-control" ng-model="toastOptions.title"/>
     </div>
     <div class="form-group">
-        <label>Text</label>
+        <label>text</label>
         <textarea class="form-control" ng-model="toastOptions.text"></textarea>
     </div>
     <div class="form-group">
-        <label>Type</label>
+        <label>type</label>
         <select class="form-control" ng-model="toastOptions.type" ng-options="item for item in toastOptionTypes"></select>
     </div>
     <div class="form-group">
-        <label>Position</label>
+        <label>position</label>
         <select class="form-control" ng-model="toastOptions.position" ng-options="item for item in toastOptionPositions"></select>
     </div>
     <div class="form-group">
-        <label>Cls</label>
+        <label>cls</label>
         <input class="form-control" type="text" ng-model="toastOptions.cls"/>
     </div>
     <div class="form-group">
-        <label>Duration</label>
+        <label>duration</label>
         <input class="form-control" type="number" ng-model="toastOptions.duration"/>
     </div>
     <div class="row">
         <div class="col-xs-6">
-            <button class="btn btn-block btn-info" ng-click="showToast()" ng-disabled="form.$invalid">Show Toast</button>
+            <button class="btn btn-block btn-success" ng-click="showToast()" ng-disabled="form.$invalid">Show Toast</button>
         </div>
         <div class="col-xs-6">
-            <button class="btn btn-block btn-danger" ng-click="reset()" >Reset</button>
+            <button class="btn btn-block btn-info" ng-click="reset()" >Reset</button>
         </div>
     </div>
 </form>

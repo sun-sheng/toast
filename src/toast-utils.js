@@ -332,15 +332,16 @@ var $util = {
      * 查找在数组中位置
      * @param array
      * @param reason {function | object}
+     * @param start 开始位置
      * function (item, index) : 自定义逻辑，返回 true 时
      * object : 和数组中的元素做对比，key和value都匹配时
      */
-    indexOf: function (array, reason)
+    indexOf: function (array, reason, start)
     {
-        var i = array.length;
+        var i = start || 0;
         var index = - 1;
         var item;
-        while (i --)
+        while (i < array.length)
         {
             item = array[i];
 
@@ -368,7 +369,25 @@ var $util = {
                     break;
                 }
             }
+            i ++ ;
         }
         return index;
+    },
+
+    find: function (array, reason)
+    {
+        var index = this.indexOf(array, reason);
+        if (index > -1) return array[index];
+    },
+
+    findAll: function (array, reason)
+    {
+        var index = -1;
+        var results = [];
+        do {
+            index = this.indexOf(array, reason, index + 1);
+            if (index > -1) results.push(array[index]);
+        } while (index > -1);
+        return results;
     }
 };

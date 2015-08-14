@@ -155,10 +155,14 @@ var $ = (function ()
         },
         html: function (html)
         {
-            this.each(function (el)
+            if (html)
             {
-                el.innerHTML = html;
-            });
+                this.each(function (el)
+                {
+                    el.innerHTML = html;
+                });
+            }
+            return this[0] && this[0].innerHTML;
         },
         hide: function ()
         {

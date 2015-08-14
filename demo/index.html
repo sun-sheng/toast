@@ -7,8 +7,8 @@
     <link href="http://cdn.bootcss.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet">
     <style>
         body {background-color: #efefef;}
-        #container {width: 800px; margin: 30px auto;}
-        .custom-header{margin-top: 0; font-size: 24px; line-height: 1em; padding-bottom: 15px; border-bottom: 1px solid #ddd;}
+        #container {width: 800px; margin: auto; padding-top: 15px;}
+        .custom-header{margin-top: 15px; font-size: 24px; line-height: 1em; padding-bottom: 15px; border-bottom: 1px solid #ddd;}
         .form-box { float: left; width: 320px;}
         .form-control, .btn, .alert {border-radius: 0;}
         select {-webkit-appearance: none;}
@@ -27,6 +27,58 @@
             border: none;
         }
         textarea {resize: none;}
+        .switch-box {
+            display: block;
+            cursor: pointer;
+            position: relative;
+            margin-bottom: 0;
+        }
+        .switch-box .text {
+            line-height: 24px;
+            margin-right: 5px;
+        }
+        .switch-box input[type=checkbox] {
+            opacity: 0;
+        }
+        .switch-box .box {
+            -webkit-transition: background-color 0.3s;
+            -moz-transition: background-color 0.3s;
+            -o-transition: background-color 0.3s;
+            transition: background-color 0.3s;
+            display: block;
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 40px;
+            height: 24px;
+            border-radius: 12px;
+            background-color: #ddd;
+            box-shadow: 0 0 2px rgba(0, 0, 0, 0.3);
+        }
+        .switch-box .box:after {
+            -webkit-transition: margin 0.3s;
+            -moz-transition: margin 0.3s;
+            -o-transition: margin 0.3s;
+            transition: margin 0.3s;
+            display: block;
+            opacity: 0.8;
+            content: "";
+            font-size: 12px;
+            text-align: center;
+            line-height: 24px;
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            background-color: #fff;
+            box-shadow: 0 0 2px rgba(0, 0, 0, 0.3);
+        }
+        .switch-box input[type=checkbox]:checked + .box {
+            background-color: #5cb85c;
+        }
+        .switch-box input[type=checkbox]:checked + .box:after {
+            margin-left: 16px;
+            content: "";
+        }
     </style>
 </head>
 
@@ -38,18 +90,18 @@
         </h1>
         <form name="form" novalidate>
             <div class="form-group">
-                <label>Title</label>
+                <label>title</label>
                 <input type="text" name="title" required class="form-control" ng-model="toastOptions.title"/>
             </div>
             <div class="form-group">
-                <label>Text</label>
+                <label>text</label>
                 <textarea class="form-control" ng-model="toastOptions.text"></textarea>
             </div>
             <div class="form-group">
-                <label>Type</label>
+                <label>type</label>
                 <select class="form-control" ng-model="toastOptions.type" ng-options="item for item in toastOptionTypes"></select>
             </div>
-            <label>Position</label>
+            <label>position</label>
             <div class="row">
                 <div class="col-xs-6">
                     <div class="form-group">
@@ -63,19 +115,37 @@
                 </div>
             </div>
             <div class="form-group">
-                <label>Cls</label>
-                <input class="form-control" type="text" ng-model="toastOptions.cls"/>
+                <label>cls</label>
+                <input class="form-control" type="text" ng-model="toastOptions.cls" placeholder="custom class"/>
             </div>
             <div class="form-group">
-                <label>Duration</label>
+                <label>duration</label>
                 <input class="form-control" type="number" ng-model="toastOptions.duration"/>
+            </div>
+            <div class="form-group">
+                <label class="switch-box">
+                    <span class="text">showCloseBtn</span>
+                    <input type="checkbox" ng-model="toastOptions.showCloseBtn">
+                    <span class="box"></span>
+                </label>
+            </div>
+            <div class="form-group">
+                <label class="switch-box">
+                    <span class="text">distinct</span>
+                    <input type="checkbox" ng-model="toastOptions.distinct">
+                    <span class="box"></span>
+                </label>
+            </div>
+            <div class="form-group">
+                <label>click</label>
+                <textarea class="form-control" ng-model="toastOptions.click" placeholder="click handler"></textarea>
             </div>
             <div class="row">
                 <div class="col-xs-6">
-                    <button class="btn btn-block btn-info" ng-click="showToast()" ng-disabled="form.$invalid">Show Toast</button>
+                    <button class="btn btn-block btn-success" ng-click="showToast()" ng-disabled="form.$invalid">Show Toast</button>
                 </div>
                 <div class="col-xs-6">
-                    <button class="btn btn-block btn-danger" ng-click="reset()" >Reset</button>
+                    <button class="btn btn-block btn-info" ng-click="reset()" >Reset</button>
                 </div>
             </div>
         </form>
@@ -94,7 +164,8 @@
             title: '一个测试',
             text: '这是一个 toast 测试',
             type: 'success',
-            duration: 5000
+            duration: 5000,
+            showCloseBtn: true
         };
         $rootScope.toastYPositions = ['top', 'center', 'bottom'];
         $rootScope.toastXPositions = ['left', 'center', 'right'];
@@ -108,8 +179,15 @@
         $rootScope.toastOptionPositions = ['top', 'center', 'bottom'];
         $rootScope.showToast = function ()
         {
-            $rootScope.toastOptions.position = $rootScope.toastPosition.y + ' ' + $rootScope.toastPosition.x;
-            $toast.show($rootScope.toastOptions);
+            var options = angular.copy($rootScope.toastOptions);
+            options.position = $rootScope.toastPosition.y + ' ' + $rootScope.toastPosition.x;
+            if ($rootScope.toastOptions.click)
+            {
+                options.click = function () {
+                    alert('will trigger the click handler : ' + $rootScope.toastOptions.click)
+                };
+            }
+            $toast.show(options);
         };
         $rootScope.reset = function ()
         {
