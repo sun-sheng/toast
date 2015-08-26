@@ -162,7 +162,7 @@
 .toast.toast-type-info {
   background-color: #2f96b4;
 }
-.toast.toast-type-warn {
+.toast.toast-type-warn, .toast.toast-type-warning {
   background-color: #f89406;
 }
 .toast.toast-type-error {
