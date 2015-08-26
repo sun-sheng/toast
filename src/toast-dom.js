@@ -95,12 +95,20 @@ var $ = (function ()
                 return arg2;
             }
         },
-        width: function ()
+        width: function (width)
         {
+            if (width) {
+                this.css('width', width + 'px');
+                return width;
+            }
             return parseFloat(this.css('width'));
         },
-        height: function ()
+        height: function (height)
         {
+            if (height) {
+                this.css('height', height + 'px');
+                return height;
+            }
             return parseFloat(this.css('height'));
         },
         offset: function ()
