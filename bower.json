@@ -1,0 +1,22 @@
+{
+  "name": "ui-toast",
+  "version": "1.0.0",
+  "homepage": "https://github.com/sun-sheng/toast",
+  "authors": [
+    "sun-sheng <sunsheng.cn@gmail.com>"
+  ],
+  "description": "web notification",
+  "main": "dist/toast.min.js dist/toast.min.css",
+  "keywords": [
+    "toast",
+    "ui"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}

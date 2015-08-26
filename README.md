@@ -3,14 +3,14 @@ notification for web app
 ### Demo
 http://sun-sheng.github.io/toast/demo/index.html
 ### INSTALL
-    bower install https://github.com/sun-sheng/toast --save    
+    bower install ui-toast --save    
 ### USE
 Reference these files in your index.html
 
 ```html
 <link rel="stylesheet" href="path/to/bower_components/toast/dist/toast.min.css"/>
-<script src="path/to/bower_components/toast/dist/toast.min.js"></script>    
-```    
+<script src="path/to/bower_components/toast/dist/toast.min.js"></script>
+```
 ### API
 #### show(options)
 options 会继承 defaultOptions
@@ -92,15 +92,14 @@ options 会继承 defaultOptions
 #### clear()
 <br/>清除所有的 toast
 
-#### success(title, [text|options, [text, options]]) 
+#### success(title, [text|options, [text, options]])
 <br/>$toast.show 的快捷调用，type 限定为 success
-#### error(title, [text|options, [text, options]]) 
+#### error(title, [text|options, [text, options]])
 <br/>$toast.show 的快捷调用，type 限定为 error
-#### warn(title, [text|options, [text, options]]) 
+#### warn(title, [text|options, [text, options]])
 <br/>$toast.show 的快捷调用，type 限定为 warn
-#### info(title, [text|options, [text, options]]) 
+#### info(title, [text|options, [text, options]])
 <br/>$toast.show 的快捷调用，type 限定为 info
 
 #### config(defaultOptions)
 <br/> 设置默认的配置项，配置类容参考 $toast.show
-
