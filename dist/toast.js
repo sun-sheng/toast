@@ -504,12 +504,20 @@ var $ = (function ()
                 return arg2;
             }
         },
-        width: function ()
+        width: function (width)
         {
+            if (width) {
+                this.css('width', width + 'px');
+                return width;
+            }
             return parseFloat(this.css('width'));
         },
-        height: function ()
+        height: function (height)
         {
+            if (height) {
+                this.css('height', height + 'px');
+                return height;
+            }
             return parseFloat(this.css('height'));
         },
         offset: function ()
@@ -708,6 +716,8 @@ var toastMixes = [];
 
 var $body = $('body');
 
+var bodyWidth = $body.width();
+
 function convertToastArguments (args)
 {
     var options = {};
@@ -799,7 +809,8 @@ function resizeToasts ($toast, position)
         {
             if (index == ($toasts.length - 1)) return true;
             var $dom = $(dom);
-            $dom.css('top', $dom.offset().y + toast_height + gap + 'px');
+            var top = parseFloat($dom.css('top'));
+            $dom.css('top', top + toast_height + gap + 'px');
         });
     }
     else if (position.indexOf('toast-y-center') !== - 1)
@@ -810,11 +821,12 @@ function resizeToasts ($toast, position)
             var $dom = $(dom);
             if (index == ($toasts.length - 1))
             {
-                $dom.css('top', $dom.offset().y - (toast_height / 2) + 'px');
+                $dom.css('margin-top', - (toast_height / 2) + 'px');
             }
             else
             {
-                $dom.css('top', $dom.offset().y + toast_height + gap + 'px');
+                var marginTop = parseFloat($dom.css('margin-top'));
+                $dom.css('margin-top', marginTop + toast_height + gap + 'px');
             }
         });
     }
@@ -904,9 +916,12 @@ var Toast = {
         //append to body
         $body.append($toast);
         $toast.show();
+        var maxWidth = bodyWidth - 30;
+        var toastWidth = $toast.width();
+        if (toastWidth > maxWidth) toastWidth = $toast.width(maxWidth);
         if ($toast.hasClass('toast-x-center'))
         {
-            $toast.css('margin-left', '-' + $toast.width() / 2 + 'px');
+            $toast.css('margin-left', (bodyWidth - toastWidth) / 2 + 'px');
         }
         //distinct others toasts
         if (options.distinct) distinctToast($toast);
