@@ -176,7 +176,7 @@ var Toast = {
     text: function (title, text, options)
     {
         var toastOptions = convertToastArguments(arguments);
-        toastOptions.type = 'text';
+        toastOptions.type = 'default';
         return this.show(toastOptions);
     },
     // toast 单独处理定位，去掉 toasts
