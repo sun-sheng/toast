@@ -1,6 +1,6 @@
 {
   "name": "toast",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "toast notice ",
   "main": "index.js",
   "scripts": {
@@ -25,9 +25,7 @@
     "gulp-compass": "^2.1.0",
     "gulp-minify-css": "^1.2.0",
     "gulp-rename": "^1.2.2",
-    "gulp-uglify": "^1.2.0"
-  },
-  "dependencies": {
+    "gulp-uglify": "^1.2.0",
     "gulp-concat": "^2.6.0"
   }
 }

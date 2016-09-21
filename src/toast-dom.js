@@ -1,5 +1,8 @@
 var $ = (function ()
 {
+
+    var isSupportTransitionEnd = document.body && document.body.style.transition !== undefined;
+
     var Dom = function (arr)
     {
         var _this = this, i, length = arr.length;
@@ -46,7 +49,7 @@ var $ = (function ()
             });
             return this;
         },
-        toogleClass: function (arg)
+        toggleClass: function (arg)
         {
             if (!isString(arg)) return this;
             this.each(function (el)
@@ -210,16 +213,16 @@ var $ = (function ()
         transitionEnd: function (callback)
         {
             if (! isFunction(callback)) return false;
-            //var events = ['webkitTransitionEnd', 'transitionend', 'oTransitionEnd', 'MSTransitionEnd', 'msTransitionEnd'];
-            var event = 'webkitTransitionEnd';
+            if (!isSupportTransitionEnd) return callback();
+            //var event = 'webkitTransitionEnd';
             function fireCallBack (e)
             {
+                this.removeEventListener('transitionend', fireCallBack, false);
                 callback(e);
-                this.removeEventListener(event, fireCallBack, false);
             }
             this.each(function (el)
             {
-                el.addEventListener(event, fireCallBack, false);
+                el.addEventListener('transitionend', fireCallBack, false);
             });
         }
     };
