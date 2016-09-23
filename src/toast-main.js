@@ -22,6 +22,10 @@ var $body = $('body');
 
 var bodyWidth = $body.width();
 
+window.addEventListener('resize', function () {
+  bodyWidth = $body.width();
+}, false);
+
 function convertToastArguments (args)
 {
     var options = {};
