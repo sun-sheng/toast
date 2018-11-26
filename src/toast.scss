@@ -1,172 +1,168 @@
-@import "compass/css3/transform";
-@import "compass/css3/transition";
-
 .toast
 {
-    @include transition-property(opacity, transform);
-    @include transition-duration(400ms);
-    display: inline-block;
+  transition-property: opacity, transform;
+  transition-duration: 400ms;
+  display: inline-block;
+  cursor: pointer;
+  z-index: 9999;
+  position: fixed;
+  opacity: 0;
+  box-sizing: border-box;
+  box-shadow: 0 0 3px rgba(0, 0, 0, 0.3);
+  text-align: left;
+  color: #fff;
+  padding: 0.75em;
+  width: 16em;
+  min-height: 1.5em;
+  border-radius: 0.3em;
+
+  .toast-icon
+  {
+    display: block;
+    position: absolute;
+    width: 2em;
+    height: 2em;
+    top: 0;
+    bottom: 0;
+    left: 0.66em;
+    margin: auto;
+    color: inherit;
+    svg
+    {
+      display: block;
+      width: 100%;
+      height: 100%;
+      fill: currentColor;
+    }
+  }
+  .toast-title,
+  .toast-text
+  {
+    -ms-word-wrap: break-word;
+    word-wrap: break-word;
+  }
+  .toast-title
+  {
+    font-size: 1.25em;
+    line-height: 1.5;
+  }
+  .toast-text
+  {
+    font-size: 1em;
+    line-height: 1.5;
+  }
+  .toast-close
+  {
+    z-index: 9;
     cursor: pointer;
-    z-index: 9999;
-    position: fixed;
-    opacity: 0;
-    box-sizing: border-box;
-    box-shadow: 0 0 3px rgba(0, 0, 0, 0.3);
-    text-align: left;
+    position: absolute;
+    display: block;
+    right: 0;
+    top: 0.7em;
+    width: 1.75em;
+    text-align: center;
+    font-size: 1.25em;
+    font-weight: bold;
     color: #fff;
-    padding: 0.75em;
-    width: 16em;
-    min-height: 1.5em;
-    border-radius: 0.3em;
+    text-shadow: 0 1px 0 #ffffff;
+    opacity: 0.8;
+    &:hover
+    {
+      color: #000;
+      opacity: 0.5;
+    }
+  }
 
-    .toast-icon
-    {
-        display: block;
-        position: absolute;
-        width: 2em;
-        height: 2em;
-        top: 0;
-        bottom: 0;
-        left: 0.66em;
-        margin: auto;
-        color: inherit;
-        svg
-        {
-            display: block;
-            width: 100%;
-            height: 100%;
-            fill: currentColor;
-        }
-    }
-    .toast-title,
-    .toast-text
-    {
-        -ms-word-wrap: break-word;
-        word-wrap: break-word;
-    }
-    .toast-title
-    {
-        font-size: 1.25em;
-        line-height: 1.5;
-    }
-    .toast-text
-    {
-        font-size: 1em;
-        line-height: 1.5;
-    }
-    .toast-close
-    {
-        z-index: 9;
-        cursor: pointer;
-        position: absolute;
-        display: block;
-        right: 0;
-        top: 0.7em;
-        width: 1.75em;
-        text-align: center;
-        font-size: 1.25em;
-        font-weight: bold;
-        color: #fff;
-        -webkit-text-shadow: 0 1px 0 #ffffff;
-        text-shadow: 0 1px 0 #ffffff;
-        opacity: 0.8;
-        &:hover
-        {
-            color: #000;
-            opacity: 0.5;
-        }
-    }
+  &.toast-with-close
+  {
+    padding-right: 1.5em;
+  }
 
-    &.toast-with-close
-    {
-        padding-right: 1.5em;
-    }
+  &.toast-with-icon
+  {
+    padding-left: 3.2em;
+  }
 
-    &.toast-with-icon
-    {
-        padding-left: 3.2em;
-    }
+  &.toast-mobile
+  {
+    width: auto;
+    pointer-events: none;
+  }
 
-    &.toast-mobile
-    {
-        width: auto;
-        pointer-events: none;
-    }
+  &.toast-y-top
+  {
+    transform: translate3d(0, -100%, 0);
+  }
+  &.toast-y-center
+  {
+    transform: translate3d(0, 100%, 0);
+  }
+  &.toast-y-bottom
+  {
+    transform: translate3d(0, 100%, 0);
+  }
 
-    &.toast-y-top
-    {
-        @include transform(translate3d(0, -100%, 0));
-    }
-    &.toast-y-center
-    {
-        @include transform(translate3d(0,100%,0));
-    }
-    &.toast-y-bottom
-    {
-        @include transform(translate3d(0,100%,0));
-    }
+  &.toast-x-left
+  {
+    transform: translate3d(-100%, 0, 0);
+  }
+  &.toast-x-right
+  {
+    transform: translate3d(100%, 0, 0);
+  }
 
-    &.toast-x-left
-    {
-        @include transform(translate3d(-100%, 0, 0));
-    }
-    &.toast-x-right
-    {
-        @include transform(translate3d(100%, 0, 0));
-    }
+  &.toast-in
+  {
+    opacity: 0.9;
+    transform: translate3d(0, 0, 0);
+  }
+  &.toast-out
+  {
+    opacity: 0;
+    transform: translate3d(0, 0, 0) scale(0.815);
+  }
 
-    &.toast-in
-    {
-        opacity: 0.9;
-        @include transform(translate3d(0,0,0));
-    }
-    &.toast-out
-    {
-        opacity: 0;
-        @include transform(translate3d(0,0,0) scale(0.815));
-    }
+  &.toast-y-top
+  {
+    top: 30px;
+  }
+  &.toast-y-center
+  {
+    top: 50%;
+  }
+  &.toast-y-bottom
+  {
+    bottom: 30px;
+  }
+  &.toast-x-left
+  {
+    left: 15px;
+  }
+  &.toast-x-right
+  {
+    right: 15px;
+  }
 
-    &.toast-y-top
-    {
-        top: 30px;
-    }
-    &.toast-y-center
-    {
-        top: 50%;
-    }
-    &.toast-y-bottom
-    {
-        bottom: 30px;
-    }
-    &.toast-x-left
-    {
-        left: 15px;
-    }
-    &.toast-x-right
-    {
-        right: 15px;
-    }
-
-    &.toast-type-success
-    {
-        background-color: #51a351;
-    }
-    &.toast-type-info
-    {
-        background-color: #2f96b4;
-    }
-    &.toast-type-warn ,
-    &.toast-type-warning
-    {
-        background-color: #f89406;
-    }
-    &.toast-type-error
-    {
-        background-color: #bd362f;
-    }
-    &.toast-type-default
-    {
-        background-color: #030303;
-    }
+  &.toast-type-success
+  {
+    background-color: #51a351;
+  }
+  &.toast-type-info
+  {
+    background-color: #2f96b4;
+  }
+  &.toast-type-warn,
+  &.toast-type-warning
+  {
+    background-color: #f89406;
+  }
+  &.toast-type-error
+  {
+    background-color: #bd362f;
+  }
+  &.toast-type-default
+  {
+    background-color: #030303;
+  }
 
 }
