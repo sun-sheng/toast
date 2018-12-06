@@ -1,9 +1,11 @@
 const webpack = require('webpack')
+const path = require('path')
 
 module.exports = {
+  // watch: true,
   //...
   entry: {
-    main: './src/index.js'
+    main: './src/toast.js'
   },
   module: {
     rules: [
@@ -21,11 +23,12 @@ module.exports = {
     library: '$toast',
     libraryExport: 'default',
     libraryTarget: 'umd',
-    filename: 'dist/toast.min.js',
+    filename: 'toast.min.js',
     auxiliaryComment: 'web notification'
   },
-  plugins: [
-    new webpack.optimize.UglifyJsPlugin({minimize: true})
-  ],
-  externals: {}
+  plugins: [],
+  externals: {},
+  optimization: {
+    minimize: process.env.MODE === 'dev' ? false : true
+  }
 }
