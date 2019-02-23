@@ -2,7 +2,7 @@
   "name": "toast",
   "version": "1.0.1",
   "description": "web notification",
-  "main": "dist/index.js",
+  "main": "dist/toast.min.js",
   "scripts": {
     "server": "http-server -p 5055",
     "build": "webpack --config ./webpack.config.js"
